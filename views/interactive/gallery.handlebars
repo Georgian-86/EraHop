@@ -210,43 +210,152 @@
 
     <!-- Upload Modal -->
     <div id="uploadModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeUploadModal()">&times;</span>
-            <h3>Upload New Image</h3>
+        <div class="modal-content upload-modal">
+            <span class="close-modal" onclick="closeUploadModal()">
+                <i class="fas fa-times"></i>
+            </span>
+            
+            <div class="upload-header">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <h3>Upload New Image</h3>
+                <p>Add a new moment to our time travel gallery</p>
+            </div>
+
             <form id="galleryUploadForm" class="upload-form">
-                <div class="form-group">
-                    <label for="title">Title:</label>
-                    <input type="text" id="title" name="title" required>
+                <div class="form-grid">
+                    <div class="form-column">
+                        <div class="form-group">
+                            <label for="title">
+                                <i class="fas fa-heading"></i>
+                                Title
+                            </label>
+                            <input type="text" id="title" name="title" required 
+                                placeholder="Enter a title for your image">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="era">
+                                <i class="fas fa-clock"></i>
+                                Time Era
+                            </label>
+                            <select id="era" name="era" required>
+                                <option value="" disabled selected>Choose an era</option>
+                                <option value="prehistoric">Prehistoric Era</option>
+                                <option value="medieval">Medieval Times</option>
+                                <option value="future">Future Zone</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-column">
+                        <div class="form-group">
+                            <label for="description">
+                                <i class="fas fa-align-left"></i>
+                                Description
+                            </label>
+                            <textarea id="description" name="description" required 
+                                placeholder="Describe this moment in time"></textarea>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="description">Description:</label>
-                    <textarea id="description" name="description" required></textarea>
+
+                <div class="file-upload-container">
+                    <div class="file-drop-zone" id="dropZone">
+                        <input type="file" id="image" name="image" accept="image/*" required>
+                        <i class="fas fa-image"></i>
+                        <p>Drag & drop your image here or click to browse</p>
+                        <span class="file-info">Maximum size: 5MB</span>
+                    </div>
+                    <div class="selected-file" id="filePreview">
+                        <img src="" alt="" id="imagePreview">
+                        <span class="file-name">No file selected</span>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="era">Era:</label>
-                    <select id="era" name="era" required>
-                        <option value="prehistoric">Prehistoric</option>
-                        <option value="medieval">Medieval</option>
-                        <option value="future">Future</option>
-                    </select>
+
+                <div class="form-actions">
+                    <button type="button" class="cancel-btn" onclick="closeUploadModal()">
+                        <i class="fas fa-times"></i> Cancel
+                    </button>
+                    <button type="submit" class="upload-btn">
+                        <i class="fas fa-upload"></i> Upload Image
+                    </button>
                 </div>
-                <div class="form-group">
-                    <label for="image">Image:</label>
-                    <input type="file" id="image" name="image" accept="image/*" required>
-                </div>
-                <button type="submit" class="upload-btn">Upload</button>
             </form>
         </div>
     </div>
 </section>
 
 <script>
+// File upload preview
+document.getElementById('image').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById('imagePreview').src = e.target.result;
+            document.querySelector('.file-name').textContent = file.name;
+            document.getElementById('filePreview').style.display = 'block';
+            document.querySelector('.file-drop-zone').style.display = 'none';
+        }
+        reader.readAsDataURL(file);
+    }
+});
+
+// Drag and drop functionality
+const dropZone = document.getElementById('dropZone');
+
+['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+    dropZone.addEventListener(eventName, preventDefaults, false);
+});
+
+function preventDefaults(e) {
+    e.preventDefault();
+    e.stopPropagation();
+}
+
+['dragenter', 'dragover'].forEach(eventName => {
+    dropZone.addEventListener(eventName, highlight, false);
+});
+
+['dragleave', 'drop'].forEach(eventName => {
+    dropZone.addEventListener(eventName, unhighlight, false);
+});
+
+function highlight(e) {
+    dropZone.classList.add('highlight');
+}
+
+function unhighlight(e) {
+    dropZone.classList.remove('highlight');
+}
+
+dropZone.addEventListener('drop', handleDrop, false);
+
+function handleDrop(e) {
+    const dt = e.dataTransfer;
+    const file = dt.files[0];
+    document.getElementById('image').files = dt.files;
+    
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById('imagePreview').src = e.target.result;
+            document.querySelector('.file-name').textContent = file.name;
+            document.getElementById('filePreview').style.display = 'block';
+            document.querySelector('.file-drop-zone').style.display = 'none';
+        }
+        reader.readAsDataURL(file);
+    }
+}
+
 function openUploadModal() {
     document.getElementById('uploadModal').style.display = 'block';
 }
 
 function closeUploadModal() {
     document.getElementById('uploadModal').style.display = 'none';
+    document.getElementById('galleryUploadForm').reset();
+    document.querySelector('.file-name').textContent = 'No file selected';
 }
 
 document.getElementById('galleryUploadForm').addEventListener('submit', async (e) => {
@@ -287,89 +396,222 @@ window.onclick = function(event) {
 </script>
 
 <style>
-/* Add to your existing gallery styles */
-.admin-controls {
-    margin: 2rem 0;
-    text-align: center;
-}
-
-.add-image-btn {
-    background: #4CAF50;
-    color: white;
-    padding: 0.8rem 1.5rem;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 1rem;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: background 0.3s ease;
-}
-
-.add-image-btn:hover {
-    background: #45a049;
-}
-
 .modal {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0, 0, 0, 0.8);
     z-index: 1000;
+    backdrop-filter: blur(5px);
 }
 
-.modal-content {
-    background: #fff;
-    margin: 10% auto;
+.upload-modal {
+    max-width: 800px;
+    width: 90%;
+    margin: 5vh auto;
     padding: 2rem;
-    border-radius: 8px;
-    max-width: 500px;
-    position: relative;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
-.close-modal {
-    position: absolute;
-    right: 1rem;
-    top: 0.5rem;
-    font-size: 1.5rem;
-    cursor: pointer;
+.upload-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #2c3e50;
 }
 
-.upload-form {
-    margin-top: 1rem;
-}
-
-.form-group {
+.upload-header i {
+    font-size: 2.5rem;
+    color: #4CAF50;
     margin-bottom: 1rem;
 }
 
-.form-group label {
-    display: block;
+.upload-header h3 {
+    font-size: 1.8rem;
     margin-bottom: 0.5rem;
-    color: #333;
+}
+
+.upload-header p {
+    color: #666;
+    font-size: 1rem;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+.form-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+.form-group label i {
+    color: #4CAF50;
 }
 
 .form-group input,
-.form-group textarea,
-.form-group select {
+.form-group select,
+.form-group textarea {
     width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    padding: 0.8rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+    outline: none;
+}
+
+.form-group textarea {
+    height: 123px;
+    resize: none;
+}
+
+.file-upload-container {
+    margin-bottom: 1.5rem;
+}
+
+.file-drop-zone {
+    position: relative;
+    padding: 2rem;
+    border: 2px dashed #4CAF50;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.file-drop-zone:hover {
+    background: rgba(76, 175, 80, 0.05);
+}
+
+.file-drop-zone input[type="file"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.file-drop-zone i {
+    font-size: 2rem;
+    color: #4CAF50;
+    margin-bottom: 1rem;
+}
+
+.file-drop-zone p {
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+}
+
+.file-info {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.selected-file {
+    display: none;
+    margin-top: 1rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.selected-file img {
+    max-width: 150px;
+    max-height: 150px;
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.cancel-btn,
+.upload-btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.cancel-btn {
+    background: #f1f1f1;
+    color: #666;
+}
+
+.cancel-btn:hover {
+    background: #e0e0e0;
 }
 
 .upload-btn {
     background: #4CAF50;
     color: white;
-    padding: 0.8rem 1.5rem;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    width: 100%;
 }
 
 .upload-btn:hover {
     background: #45a049;
+    transform: translateY(-1px);
+}
+
+.close-modal {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #f1f1f1;
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.close-modal:hover {
+    background: #e0e0e0;
+    transform: rotate(90deg);
+}
+
+@media (max-width: 768px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .upload-modal {
+        padding: 1.5rem;
+        margin: 2vh auto;
+    }
 }
 </style> 
