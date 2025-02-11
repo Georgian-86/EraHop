@@ -32,30 +32,14 @@
     </div>
 
     <div class="gallery-grid">
-        {{#each items}}
-        <div class="gallery-item {{this.era}}" data-aos="fade-up">
-            <img src="{{this.imageUrl}}" alt="{{this.title}}">
-            <div class="item-overlay">
-                <div class="item-content">
-                    <span class="era-badge {{this.era}}">{{this.era}}</span>
-                    <h3>{{this.title}}</h3>
-                    <p>{{this.description}}</p>
-                    <button class="view-btn" onclick="openGalleryModal(this)">
-                        <i class="fas fa-expand"></i> View
-                    </button>
-                </div>
-            </div>
-        </div>
-        {{/each}}
-
-        <!-- Default Gallery Items -->
+        <!-- Prehistoric Era -->
         <div class="gallery-item prehistoric" data-aos="fade-up">
             <img src="/images/gallery/prehistoric/dino1.jpg" alt="Dinosaur Safari">
             <div class="item-overlay">
                 <div class="item-content">
                     <span class="era-badge prehistoric">Prehistoric</span>
-                    <h3>Jurassic Experience</h3>
-                    <p>Live dinosaur encounters in their natural habitat</p>
+                    <h3>Dinosaur Safari</h3>
+                    <p>Experience prehistoric wildlife up close in their natural habitat</p>
                     <button class="view-btn" onclick="openGalleryModal(this)">
                         <i class="fas fa-expand"></i> View
                     </button>
@@ -64,12 +48,27 @@
         </div>
 
         <div class="gallery-item prehistoric" data-aos="fade-up">
-            <img src="/images/gallery/prehistoric/excavation.jpg" alt="Fossil Excavation">
+            <img src="/images/gallery/prehistoric/excavation.jpg" alt="Archaeological Dig">
             <div class="item-overlay">
                 <div class="item-content">
                     <span class="era-badge prehistoric">Prehistoric</span>
-                    <h3>Fossil Discovery</h3>
-                    <p>Unearth ancient mysteries at our excavation sites</p>
+                    <h3>Archaeological Dig</h3>
+                    <p>Uncover ancient fossils and artifacts at our excavation site</p>
+                    <button class="view-btn" onclick="openGalleryModal(this)">
+                        <i class="fas fa-expand"></i> View
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Medieval Era -->
+        <div class="gallery-item medieval" data-aos="fade-up">
+            <img src="/images/gallery/medieval/castle.jpg" alt="Castle Tour">
+            <div class="item-overlay">
+                <div class="item-content">
+                    <span class="era-badge medieval">Medieval</span>
+                    <h3>Castle Tour</h3>
+                    <p>Explore the grand halls and towers of our medieval fortress</p>
                     <button class="view-btn" onclick="openGalleryModal(this)">
                         <i class="fas fa-expand"></i> View
                     </button>
@@ -83,7 +82,7 @@
                 <div class="item-content">
                     <span class="era-badge medieval">Medieval</span>
                     <h3>Knights Tournament</h3>
-                    <p>Epic jousting matches at the grand arena</p>
+                    <p>Witness epic jousting matches and sword fighting displays</p>
                     <button class="view-btn" onclick="openGalleryModal(this)">
                         <i class="fas fa-expand"></i> View
                     </button>
@@ -91,6 +90,79 @@
             </div>
         </div>
 
+        <!-- Future Era -->
+        <div class="gallery-item future" data-aos="fade-up">
+            <img src="/images/gallery/future/robot.jpg" alt="AI & Robotics">
+            <div class="item-overlay">
+                <div class="item-content">
+                    <span class="era-badge future">Future</span>
+                    <h3>AI & Robotics Lab</h3>
+                    <p>Interact with advanced artificial intelligence and robotic systems</p>
+                    <button class="view-btn" onclick="openGalleryModal(this)">
+                        <i class="fas fa-expand"></i> View
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="gallery-item future" data-aos="fade-up">
+            <img src="/images/gallery/future/hologram.jpg" alt="Holographic Display">
+            <div class="item-overlay">
+                <div class="item-content">
+                    <span class="era-badge future">Future</span>
+                    <h3>Holographic Theater</h3>
+                    <p>Experience immersive 3D holographic entertainment</p>
+                    <button class="view-btn" onclick="openGalleryModal(this)">
+                        <i class="fas fa-expand"></i> View
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Cards -->
+        <div class="gallery-item prehistoric" data-aos="fade-up">
+            <img src="images\prehistoric\752d20dc216ebab6fa79bf3092e9e2cc_original.avif" alt="Cave Art Workshop">
+            <div class="item-overlay">
+                <div class="item-content">
+                    <span class="era-badge prehistoric">Prehistoric</span>
+                    <h3>Cave Art Workshop</h3>
+                    <p>Create authentic prehistoric cave paintings using ancient techniques</p>
+                    <button class="view-btn" onclick="openGalleryModal(this)">
+                        <i class="fas fa-expand"></i> View
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="gallery-item medieval" data-aos="fade-up">
+            <img src="images\medieval\download (1).jpg" alt="Medieval Archery">
+            <div class="item-overlay">
+                <div class="item-content">
+                    <span class="era-badge medieval">Medieval</span>
+                    <h3>Archery Training</h3>
+                    <p>Master the art of medieval archery with expert instructors</p>
+                    <button class="view-btn" onclick="openGalleryModal(this)">
+                        <i class="fas fa-expand"></i> View
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="gallery-item future" data-aos="fade-up">
+            <img src="images\future\download.jpg" alt="Quantum Computing">
+            <div class="item-overlay">
+                <div class="item-content">
+                    <span class="era-badge future">Future</span>
+                    <h3>Quantum Lab</h3>
+                    <p>Experience the power of next-generation quantum computing</p>
+                    <button class="view-btn" onclick="openGalleryModal(this)">
+                        <i class="fas fa-expand"></i> View
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Medieval Era Cards -->
         <div class="gallery-item medieval" data-aos="fade-up">
             <img src="/images/gallery/medieval/feast.jpg" alt="Royal Feast">
             <div class="item-overlay">
@@ -105,20 +177,7 @@
             </div>
         </div>
 
-        <div class="gallery-item future" data-aos="fade-up">
-            <img src="/images/gallery/future/hologram.jpg" alt="Holographic Display">
-            <div class="item-overlay">
-                <div class="item-content">
-                    <span class="era-badge future">Future</span>
-                    <h3>Holographic Concert</h3>
-                    <p>Next-generation entertainment with AI performers</p>
-                    <button class="view-btn" onclick="openGalleryModal(this)">
-                        <i class="fas fa-expand"></i> View
-                    </button>
-                </div>
-            </div>
-        </div>
-
+        <!-- Future Era Cards -->
         <div class="gallery-item future" data-aos="fade-up">
             <img src="/images/gallery/future/space.jpg" alt="Space Simulator">
             <div class="item-overlay">
@@ -126,49 +185,6 @@
                     <span class="era-badge future">Future</span>
                     <h3>Space Flight</h3>
                     <p>Zero-gravity simulation experience</p>
-                    <button class="view-btn" onclick="openGalleryModal(this)">
-                        <i class="fas fa-expand"></i> View
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Additional Cards -->
-        <div class="gallery-item prehistoric" data-aos="fade-up">
-            <img src="/images/gallery/prehistoric/cave-art.jpg" alt="Cave Art Workshop">
-            <div class="item-overlay">
-                <div class="item-content">
-                    <span class="era-badge prehistoric">Prehistoric</span>
-                    <h3>Cave Art Workshop</h3>
-                    <p>Create authentic prehistoric cave paintings using ancient techniques</p>
-                    <button class="view-btn" onclick="openGalleryModal(this)">
-                        <i class="fas fa-expand"></i> View
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div class="gallery-item medieval" data-aos="fade-up">
-            <img src="/images/gallery/medieval/archery.jpg" alt="Medieval Archery">
-            <div class="item-overlay">
-                <div class="item-content">
-                    <span class="era-badge medieval">Medieval</span>
-                    <h3>Archery Training</h3>
-                    <p>Master the art of medieval archery with expert instructors</p>
-                    <button class="view-btn" onclick="openGalleryModal(this)">
-                        <i class="fas fa-expand"></i> View
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div class="gallery-item future" data-aos="fade-up">
-            <img src="/images/gallery/future/quantum-lab.jpg" alt="Quantum Computing">
-            <div class="item-overlay">
-                <div class="item-content">
-                    <span class="era-badge future">Future</span>
-                    <h3>Quantum Lab</h3>
-                    <p>Experience the power of next-generation quantum computing</p>
                     <button class="view-btn" onclick="openGalleryModal(this)">
                         <i class="fas fa-expand"></i> View
                     </button>
