@@ -1,14 +1,19 @@
 const nodemailer = require('nodemailer');
 
-// Create transporter with more detailed logging
+// Create transporter with updated configuration
 const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: 'smtp.gmail.com',
+    port: 587, // Change from 465 to 587 for TLS
+    secure: false, // Set to false for TLS
     auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASSWORD
     },
-    debug: true, // Enable debug logging
-    logger: true  // Log to console
+    tls: {
+        rejectUnauthorized: false // Only use during development
+    },
+    debug: true,
+    logger: true
 });
 
 // Verify transporter configuration
