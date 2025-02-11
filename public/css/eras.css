@@ -1,0 +1,164 @@
+/* Common Era Styles */
+.era-section {
+    min-height: 100vh;
+    padding: 6rem 2rem;
+    position: relative;
+    color: white;
+    overflow: hidden;
+}
+
+.era-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.era-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.era-title {
+    font-size: 3.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.era-description {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 4rem;
+}
+
+/* Prehistoric Era Specific */
+.prehistoric-era {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/images/prehistoric/background.jpg') center/cover;
+}
+
+.prehistoric-era .era-overlay {
+    background: url('/images/textures/rock-texture.png');
+    opacity: 0.1;
+}
+
+.prehistoric-era .feature-card {
+    background: rgba(160, 82, 45, 0.8);
+    border: 2px solid #8B4513;
+}
+
+.time-portal-effect {
+    position: absolute;
+    inset: 0;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    pointer-events: none;
+}
+
+/* Medieval Era Specific */
+.medieval-era {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/images/medieval/background.jpg') center/cover;
+}
+
+.medieval-era .era-overlay {
+    background: url('/images/textures/stone-texture.png');
+    opacity: 0.15;
+}
+
+.medieval-era .feature-card {
+    background: rgba(114, 47, 55, 0.8);
+    border: 2px solid #4A1C1C;
+}
+
+.activity-scroll {
+    display: flex;
+    gap: 2rem;
+    overflow-x: auto;
+    padding: 2rem 0;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Future Era Specific */
+.future-era {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/images/future/background.jpg') center/cover;
+}
+
+.cyber-grid {
+    background: 
+        linear-gradient(transparent 95%, #00f2ff 95%),
+        linear-gradient(90deg, transparent 95%, #00f2ff 95%);
+    background-size: 50px 50px;
+    opacity: 0.1;
+}
+
+.holographic {
+    position: relative;
+    background: rgba(46, 89, 132, 0.8);
+    border: 2px solid #1E3F66;
+    backdrop-filter: blur(10px);
+}
+
+.cyber-effect {
+    position: absolute;
+    inset: 0;
+    border: 2px solid #0ff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+    pointer-events: none;
+}
+
+/* Common Feature Card Styles */
+.era-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.feature-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+}
+
+.feature-card i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+/* Animations */
+@keyframes portalPulse {
+    0% { transform: translateX(-50%) scaleX(0.8); opacity: 0.5; }
+    50% { transform: translateX(-50%) scaleX(1.2); opacity: 1; }
+    100% { transform: translateX(-50%) scaleX(0.8); opacity: 0.5; }
+}
+
+@keyframes hologramFlicker {
+    0% { opacity: 0.8; }
+    50% { opacity: 1; }
+    51% { opacity: 0.4; }
+    100% { opacity: 0.8; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .era-title {
+        font-size: 3rem;
+    }
+
+    .feature-card {
+        margin: 1rem;
+    }
+
+    .activity-scroll {
+        padding: 1rem;
+    }
+} 

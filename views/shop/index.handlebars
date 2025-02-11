@@ -1,0 +1,142 @@
+<section class="shop-section">
+    <h2 class="section-title">Time Travel Shop</h2>
+    
+    <!-- Event Passes Section -->
+    <div class="shop-category" id="tickets">
+        <h3>Event Passes</h3>
+        <div class="product-grid">
+            <div class="product-card" data-id="all-access">
+                <div class="product-image">
+                    <img src="/images/shop/all-access-pass.jpg" alt="All Access Pass">
+                </div>
+                <div class="product-details">
+                    <h4>All Access Pass</h4>
+                    <p>Experience all three eras</p>
+                    <span class="price">$299</span>
+                    <button class="add-to-cart" onclick="addToCart('All Access Pass', 299, 'pass')">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <div class="product-card" data-id="prehistoric-pass">
+                <div class="product-image">
+                    <img src="/images/shop/prehistoric-pass.jpg" alt="Prehistoric Pass">
+                </div>
+                <div class="product-details">
+                    <h4>Prehistoric Pass</h4>
+                    <p>Access to all prehistoric events</p>
+                    <span class="price">$149</span>
+                    <button class="add-to-cart" onclick="addToCart('Prehistoric Pass', 149, 'pass')">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+            <!-- Add more passes -->
+        </div>
+    </div>
+    
+    <!-- Merchandise Section -->
+    <div class="shop-category" id="merchandise">
+        <h3>Merchandise</h3>
+        <div class="product-grid">
+            <div class="product-card" data-id="tshirt">
+                <div class="product-image">
+                    <img src="/images/shop/time-shirt.jpg" alt="TimeFest T-Shirt">
+                </div>
+                <div class="product-details">
+                    <h4>TimeFest T-Shirt</h4>
+                    <p>Official festival merchandise</p>
+                    <span class="price">$25</span>
+                    <button class="add-to-cart" onclick="addToCart('TimeFest T-Shirt', 25, 'merchandise')">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+            <!-- Add more merchandise -->
+        </div>
+    </div>
+</section>
+
+<script>
+async function addToCart(title, price, type) {
+    try {
+        console.log('Adding to cart:', { title, price, type }); // Log attempt
+        const response = await fetch('/api/cart/add', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                title,
+                price,
+                type,
+                quantity: 1
+            })
+        });
+
+        const data = await response.json();
+        console.log('Server response:', data); // Log server response
+        
+        if (response.ok) {
+            updateCartCount(data.totalItems);
+            showNotification('Item added to cart!');
+        } else {
+            throw new Error(data.message || 'Failed to add item to cart');
+        }
+    } catch (error) {
+        console.error('Cart error:', error); // Log error details
+        showNotification('Failed to add item to cart: ' + error.message, 'error');
+    }
+}
+
+function updateCartCount(count) {
+    const cartCount = document.querySelector('.cart-count');
+    if (cartCount) {
+        cartCount.textContent = count;
+    }
+}
+
+function showNotification(message, type = 'success') {
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.textContent = message;
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.remove();
+    }, 3000);
+}
+</script>
+
+<style>
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 1rem;
+    border-radius: 4px;
+    color: white;
+    z-index: 1000;
+    animation: slideIn 0.3s ease;
+}
+
+.notification.success {
+    background: #4CAF50;
+}
+
+.notification.error {
+    background: #f44336;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+</style> 

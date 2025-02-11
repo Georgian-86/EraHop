@@ -1,0 +1,104 @@
+/* Theme Transitions */
+.theme-transition {
+    transition: background-color 0.5s ease,
+                color 0.5s ease,
+                font-family 0.5s ease;
+}
+
+/* Time Warp Animation */
+@keyframes timeWarp {
+    0% { transform: scale(1) rotate(0deg); opacity: 1; }
+    50% { transform: scale(1.2) rotate(10deg); opacity: 0.5; }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+.time-warp {
+    animation: timeWarp 2s infinite;
+}
+
+/* Time Split Animation */
+@keyframes timeSplit {
+    from { transform: translateX(-100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+.time-split {
+    animation: timeSplit 0.8s ease-out forwards;
+}
+
+/* Portal Effect */
+@keyframes portalEffect {
+    0% { transform: scale(0) rotate(0deg); opacity: 0; }
+    50% { transform: scale(1.2) rotate(180deg); opacity: 0.7; }
+    100% { transform: scale(1) rotate(360deg); opacity: 1; }
+}
+
+.portal-effect {
+    animation: portalEffect 1.5s ease-in-out;
+}
+
+/* Time Ripple */
+@keyframes timeRipple {
+    0% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.4); }
+    70% { box-shadow: 0 0 0 20px rgba(231, 76, 60, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0); }
+}
+
+.time-ripple {
+    animation: timeRipple 2s infinite;
+}
+
+/* Theme-specific animations */
+.prehistoric-theme .animate-on-theme-change {
+    animation: rockFormation 1s ease-out;
+}
+
+.medieval-theme .animate-on-theme-change {
+    animation: castleBuild 1s ease-out;
+}
+
+.future-theme .animate-on-theme-change {
+    animation: techGlitch 1s ease-out;
+}
+
+@keyframes rockFormation {
+    from { transform: scale(0.8) rotate(-10deg); opacity: 0; }
+    to { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+@keyframes castleBuild {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes techGlitch {
+    0% { clip-path: inset(0 0 0 0); }
+    20% { clip-path: inset(20% 0 0 0); }
+    40% { clip-path: inset(40% 0 20% 0); }
+    60% { clip-path: inset(60% 0 40% 0); }
+    80% { clip-path: inset(80% 0 60% 0); }
+    100% { clip-path: inset(0 0 0 0); }
+}
+
+/* Hover Effects */
+.hover-animate {
+    transition: transform 0.3s ease;
+}
+
+.hover-animate:hover {
+    transform: scale(1.05);
+}
+
+/* Responsive Animations */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .animate-on-theme-change {
+        animation-duration: 0.5s;
+    }
+} 

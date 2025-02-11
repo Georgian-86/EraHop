@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&family=MedievalSharp&family=Orbitron&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/theme.css">
+    <link rel="stylesheet" href="/css/animations.css">
+    <link rel="stylesheet" href="/css/eras.css">
+    <link rel="stylesheet" href="/css/schedule.css">
+    <link rel="stylesheet" href="/css/timezones.css">
+    <link rel="stylesheet" href="/css/gallery.css">
+</head>
+<body class="theme-transition">
+    {{> header}}
+    
+    <div id="countdown" class="countdown-container animate-on-theme-change"></div>
+    
+    <main>
+        {{{body}}}
+    </main>
+
+    <section id="social-feed" class="social-feed animate-on-theme-change">
+        <!-- Social feed content -->
+    </section>
+
+    {{> footer}}
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/countdown.js"></script>
+    <script src="/js/social.js"></script>
+    <script src="/js/theme-manager.js"></script>
+    <script src="/js/animations.js"></script>
+    <script src="/js/schedule.js"></script>
+    <script src="/js/timezones.js"></script>
+    <script src="/js/gallery.js"></script>
+    <script>
+        // Initialize countdown
+        document.addEventListener('DOMContentLoaded', function() {
+            const eventDate = new Date('2025-02-11T10:00:00');
+            new TimeWarpCountdown(eventDate, 'countdown', 'countdown-mini');
+        });
+
+        // Initialize social feed
+        const socialFeed = new SocialFeed('social-feed', 'TimeFest2024');
+
+        // Initialize managers
+        const themeManager = new ThemeManager();
+        const animationController = new AnimationController();
+    </script>
+
+    <!-- Page Specific Scripts -->
+    {{#if isSchedulePage}}
+    <script src="/js/schedule.js"></script>
+    {{/if}}
+
+    {{#if isTimezonePage}}
+    <script src="/js/timezones.js"></script>
+    {{/if}}
+
+    {{#if isGalleryPage}}
+    <script src="/js/gallery.js"></script>
+    {{/if}}
+
+    {{#if isSocialPage}}
+    <script src="/js/social.js"></script>
+    {{/if}}
+</body>
+</html> 

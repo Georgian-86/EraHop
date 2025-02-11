@@ -1,0 +1,190 @@
+<section class="registration-section">
+    <h2>Event Registration</h2>
+    <div class="registration-container">
+        <form id="registrationForm" class="registration-form" action="/api/registration" method="POST">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+
+            <div class="form-group">
+                <label for="ticketType">Ticket Type</label>
+                <select id="ticketType" name="ticketType" required>
+                    <option value="">Select a ticket type</option>
+                    <option value="all-access" data-price="299">All Access Pass ($299)</option>
+                    <option value="prehistoric" data-price="149">Prehistoric Pass ($149)</option>
+                    <option value="medieval" data-price="149">Medieval Pass ($149)</option>
+                    <option value="future" data-price="149">Future Pass ($149)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="quantity">Number of Tickets</label>
+                <input type="number" id="quantity" name="quantity" min="1" value="1" required>
+            </div>
+
+            <div class="total-amount">
+                Total Amount: $<span id="totalAmount">0</span>
+            </div>
+
+            <button type="submit" class="register-btn">Register Now</button>
+        </form>
+    </div>
+</section>
+
+<style>
+.registration-section {
+    padding: 4rem 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.registration-section h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+.registration-form {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.total-amount {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: #f5f5f5;
+    border-radius: 4px;
+    text-align: right;
+}
+
+.register-btn {
+    width: 100%;
+    padding: 1rem;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.register-btn:hover {
+    background: #45a049;
+}
+
+@media (max-width: 768px) {
+    .registration-section {
+        padding: 2rem 1rem;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('registrationForm');
+    const ticketType = document.getElementById('ticketType');
+    const quantity = document.getElementById('quantity');
+    const totalAmount = document.getElementById('totalAmount');
+
+    function updateTotal() {
+        const selectedOption = ticketType.options[ticketType.selectedIndex];
+        const price = selectedOption.dataset.price || 0;
+        const total = price * quantity.value;
+        totalAmount.textContent = total;
+    }
+
+    ticketType.addEventListener('change', updateTotal);
+    quantity.addEventListener('change', updateTotal);
+
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const submitButton = form.querySelector('button[type="submit"]');
+        submitButton.disabled = true;
+        
+        try {
+            // Gather form data
+            const formData = {
+                name: form.name.value.trim(),
+                email: form.email.value.trim(),
+                phone: form.phone.value.trim(),
+                ticketType: form.ticketType.value,
+                quantity: parseInt(form.quantity.value),
+                totalAmount: parseFloat(totalAmount.textContent)
+            };
+
+            console.log('Sending registration data:', formData);
+
+            // Send registration request
+            const response = await fetch('/api/registration', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+
+            const data = await response.json();
+            console.log('Server response:', data);
+
+            if (data.success) {
+                // Show success message
+                alert('Registration successful! Check your email for confirmation.');
+                
+                // Reset form
+                form.reset();
+                updateTotal();
+                
+                // Redirect to confirmation page or show success message
+                // window.location.href = '/registration-success';
+            } else {
+                throw new Error(data.message || 'Registration failed');
+            }
+        } catch (error) {
+            console.error('Registration error:', error);
+            alert(error.message || 'Registration failed. Please try again.');
+        } finally {
+            submitButton.disabled = false;
+        }
+    });
+
+    // Initialize total
+    updateTotal();
+});
+</script> 

@@ -1,0 +1,111 @@
+<section class="timeline-nav">
+    <div class="era-selector">
+        <button class="era-btn active" data-era="all">All Eras</button>
+        <button class="era-btn" data-era="prehistoric">Prehistoric</button>
+        <button class="era-btn" data-era="medieval">Medieval</button>
+        <button class="era-btn" data-era="future">Future</button>
+    </div>
+</section>
+
+<div class="time-periods">
+    <section id="prehistoric" class="era-section prehistoric-era">
+        <div class="era-header" data-aos="fade-right">
+            <h2>Prehistoric Era</h2>
+            <p>Journey back to the dawn of time</p>
+        </div>
+        <div class="events-grid">
+            {{#each events}}
+                {{#if (eq this.era 'prehistoric')}}
+                    <div class="event-card" data-aos="fade-up">
+                        <div class="event-image">
+                            <img src="images\prehistoric\images.jpg" alt="{{this.name}}">
+                        </div>
+                        <div class="event-details">
+                            <h3>{{this.name}}</h3>
+                            <p>{{this.description}}</p>
+                            <p class="event-info">
+                                <span><i class="fas fa-clock"></i> {{this.time}}</span>
+                                <span><i class="fas fa-map-marker-alt"></i> {{this.location}}</span>
+                            </p>
+                            <div class="event-capacity">
+                                <progress value="{{this.registrations}}" max="{{this.capacity}}"></progress>
+                                <span>{{subtract this.capacity this.registrations}} spots left</span>
+                            </div>
+                            <a href="/events/register/{{this.id}}" class="register-button">Register Now</a>
+                        </div>
+                    </div>
+                {{/if}}
+            {{/each}}
+        </div>
+    </section>
+
+    <!-- Medieval Era -->
+    <section id="medieval" class="era-section medieval-era">
+        <!-- Similar structure as prehistoric -->
+        <div class="era-header" data-aos="fade-right">
+            <h2>Prehistoric Era</h2>
+            <p>Journey back to the dawn of time</p>
+        </div>
+        <div class="events-grid">
+            {{#each events}}
+                {{#if (eq this.era 'medieval')}}
+                    <div class="event-card" data-aos="fade-up">
+                        <div class="event-image">
+                            <img src="images\medieval\download (1).jpg" alt="{{this.name}}">
+                        </div>
+                        <div class="event-details">
+                            <h3>{{this.name}}</h3>
+
+
+                            <p>{{this.description}}</p>
+                            <p class="event-info">
+                                <span><i class="fas fa-clock"></i> {{this.time}}</span>
+                                <span><i class="fas fa-map-marker-alt"></i> {{this.location}}</span>
+                            </p>
+                            <div class="event-capacity">
+                                <progress value="{{this.registrations}}" max="{{this.capacity}}"></progress>
+                                <span>{{subtract this.capacity this.registrations}} spots left</span>
+                            </div>
+                            <a href="/events/register/{{this.id}}" class="register-button">Register Now</a>
+                        </div>
+                    </div>
+                {{/if}}
+            {{/each}}
+        </div>
+        <!-- ... -->
+    </section>
+
+    <!-- Future Era -->
+    <section id="future" class="era-section future-era">
+        <!-- Similar structure as prehistoric -->
+        <div class="era-header" data-aos="fade-right">
+            <h2>Prehistoric Era</h2>
+            <p>Journey back to the dawn of time</p>
+        </div>
+        <div class="events-grid">
+            {{#each events}}
+                {{#if (eq this.era 'future')}}
+                    <div class="event-card" data-aos="fade-up">
+                        <div class="event-image">
+                            <img src="images\future" alt="{{this.name}}">
+                        </div>
+                        <div class="event-details">
+                            <h3>{{this.name}}</h3>
+                            <p>{{this.description}}</p>
+                            <p class="event-info">
+                                <span><i class="fas fa-clock"></i> {{this.time}}</span>
+                                <span><i class="fas fa-map-marker-alt"></i> {{this.location}}</span>
+                            </p>
+                            <div class="event-capacity">
+                                <progress value="{{this.registrations}}" max="{{this.capacity}}"></progress>
+                                <span>{{subtract this.capacity this.registrations}} spots left</span>
+                            </div>
+                            <a href="/events/register/{{this.id}}" class="register-button">Register Now</a>
+                        </div>
+                    </div>
+                {{/if}}
+            {{/each}}
+        </div>
+        <!-- ... -->
+    </section>
+</div> 

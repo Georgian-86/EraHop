@@ -1,0 +1,54 @@
+<section class="shop-section">
+    <h2 class="section-title">Time Travel Shop</h2>
+    
+    <div class="tickets-section">
+        <h3>Event Passes</h3>
+        <div class="products-grid">
+            {{#each products}}
+            {{#if (includes this.id 'ticket')}}
+            <div class="product-card" data-aos="fade-up">
+                <h4>{{this.name}}</h4>
+                <p>{{this.description}}</p>
+                <p class="price">${{divide this.price 100}}</p>
+                <button class="buy-btn" onclick="addToCart('{{this.id}}')">Add to Cart</button>
+            </div>
+            {{/if}}
+            {{/each}}
+        </div>
+    </div>
+
+    <div class="merchandise-section">
+        <h3>Time Travel Merchandise</h3>
+        <div class="products-grid">
+            {{#each products}}
+            {{#if (includes this.id 'merch')}}
+            <div class="product-card" data-aos="fade-up">
+                <img src="/images/merchandise/{{this.id}}.jpg" alt="{{this.name}}">
+                <h4>{{this.name}}</h4>
+                <p>{{this.description}}</p>
+                {{#if this.sizes}}
+                <select class="size-select">
+                    {{#each this.sizes}}
+                    <option value="{{this}}">Size {{this}}</option>
+                    {{/each}}
+                </select>
+                {{/if}}
+                <p class="price">${{divide this.price 100}}</p>
+                <button class="buy-btn" onclick="addToCart('{{this.id}}')">Add to Cart</button>
+            </div>
+            {{/if}}
+            {{/each}}
+        </div>
+    </div>
+
+    <div id="shopping-cart" class="cart-sidebar">
+        <h3>Shopping Cart</h3>
+        <div id="cart-items"></div>
+        <div class="cart-total">
+            <p>Total: $<span id="cart-total">0.00</span></p>
+            <button id="checkout-btn" onclick="checkout()">Checkout</button>
+        </div>
+    </div>
+</section>
+
+<script src="/js/shop.js"></script> 

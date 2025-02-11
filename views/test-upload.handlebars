@@ -1,0 +1,105 @@
+<section class="upload-test-section">
+    <h2>Test Image Upload</h2>
+    <form id="uploadForm" class="upload-form">
+        <div class="form-group">
+            <label for="image">Select Image:</label>
+            <input type="file" id="image" name="image" accept="image/*" required>
+        </div>
+        <button type="submit" class="upload-btn">Upload Image</button>
+    </form>
+    <div id="result" class="upload-result">
+        <h3>Upload Result:</h3>
+        <div id="imagePreview"></div>
+    </div>
+</section>
+
+<script>
+document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData();
+    const fileInput = document.getElementById('image');
+    formData.append('image', fileInput.files[0]);
+
+    try {
+        const response = await fetch('/api/gallery/test-upload', {
+            method: 'POST',
+            body: formData
+        });
+
+        const data = await response.json();
+        
+        if (response.ok) {
+            const preview = document.getElementById('imagePreview');
+            preview.innerHTML = `
+                <p class="success">Upload successful!</p>
+                <img src="${data.url}" alt="Uploaded image">
+                <p>Image URL: ${data.url}</p>
+            `;
+        } else {
+            throw new Error(data.message);
+        }
+    } catch (error) {
+        document.getElementById('imagePreview').innerHTML = `
+            <p class="error">Upload failed: ${error.message}</p>
+        `;
+    }
+});
+</script>
+
+<style>
+.upload-test-section {
+    padding: 2rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.upload-form {
+    margin: 2rem 0;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.upload-btn {
+    background: #4CAF50;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.upload-btn:hover {
+    background: #45a049;
+}
+
+.upload-result {
+    margin-top: 2rem;
+}
+
+#imagePreview img {
+    max-width: 100%;
+    margin-top: 1rem;
+    border-radius: 4px;
+}
+
+.success {
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+.error {
+    color: #f44336;
+    font-weight: bold;
+}
+</style> 

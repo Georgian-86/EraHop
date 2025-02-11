@@ -1,0 +1,156 @@
+/* Time Travel Theme Styles */
+:root {
+    --prehistoric-color: #8B4513;
+    --medieval-color: #4A1C1C;
+    --future-color: #1E3F66;
+    --transition-speed: 0.5s;
+}
+
+/* Theme Transitions */
+.theme-transition {
+    transition: all var(--transition-speed) ease;
+}
+
+/* Era-specific styles */
+.prehistoric-theme {
+    background: var(--prehistoric-color);
+    font-family: 'Caveat', cursive;
+}
+
+.medieval-theme {
+    background: var(--medieval-color);
+    font-family: 'MedievalSharp', cursive;
+}
+
+.future-theme {
+    background: var(--future-color);
+    font-family: 'Orbitron', sans-serif;
+}
+
+/* Countdown Timer Styles */
+.countdown-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    color: white;
+}
+
+.countdown-item {
+    text-align: center;
+    position: relative;
+}
+
+.countdown-item .number {
+    font-size: 3rem;
+    font-weight: bold;
+    display: block;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.countdown-item .label {
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+
+/* Warp Effect */
+.warping .number {
+    animation: warpEffect 2s infinite;
+}
+
+@keyframes warpEffect {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); filter: blur(2px); }
+    100% { transform: scale(1); }
+}
+
+/* Social Feed Styles */
+.social-feed {
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.social-feed-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.social-feed-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.social-post {
+    background: white;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.social-post:hover {
+    transform: translateY(-5px);
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.post-image {
+    width: 100%;
+    border-radius: 5px;
+    margin: 1rem 0;
+}
+
+.post-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.like-button {
+    background: none;
+    border: none;
+    color: #e74c3c;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.social-share-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.social-share-buttons button {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background 0.3s ease;
+}
+
+/* Platform-specific styles */
+.twitter { border-left: 4px solid #1DA1F2; }
+.facebook { border-left: 4px solid #4267B2; }
+.instagram { border-left: 4px solid #E1306C; } 

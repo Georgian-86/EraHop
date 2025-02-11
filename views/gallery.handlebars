@@ -1,0 +1,40 @@
+<section class="gallery-section">
+    <div class="upload-form">
+        <h2>Share Your Time Travel Moments</h2>
+        <form action="/interactive/gallery/upload" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="photo">Choose Photo</label>
+                <input type="file" id="photo" name="photo" accept="image/*" required>
+            </div>
+            <div class="form-group">
+                <label for="caption">Caption</label>
+                <input type="text" id="caption" name="caption" required>
+            </div>
+            <div class="form-group">
+                <label for="era">Time Period</label>
+                <select id="era" name="era" required>
+                    <option value="prehistoric">Prehistoric Era</option>
+                    <option value="medieval">Medieval Times</option>
+                    <option value="future">Future Zone</option>
+                </select>
+            </div>
+            <button type="submit" class="submit-button">Upload Photo</button>
+        </form>
+    </div>
+
+    <div class="gallery-grid">
+        {{#each photos}}
+        <div class="gallery-item" data-aos="fade-up">
+            <img src="{{this.image}}" alt="{{this.caption}}">
+            <div class="gallery-item-info">
+                <p>{{this.caption}}</p>
+                <span class="era-tag">{{this.era}}</span>
+                <button class="vote-btn" onclick="voteForPhoto({{this.id}})">
+                    <i class="fas fa-heart"></i>
+                    <span class="vote-count">{{this.votes}}</span>
+                </button>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</section> 
