@@ -1,30 +1,278 @@
 <section class="time-map-section">
     <div class="map-container">
-        <h2 class="section-title">Time Travel Map</h2>
-        <div class="interactive-map" id="timeMap">
-            <!-- Map will be initialized here -->
-            <div class="map-overlay">
-                <div class="era-markers">
-                    <div class="map-marker prehistoric" data-location="Jurassic Valley">
-                        <i class="fas fa-mountain"></i>
-                        <span>Prehistoric Zone</span>
-                    </div>
-                    <div class="map-marker medieval" data-location="Castle Grounds">
-                        <i class="fas fa-chess-rook"></i>
-                        <span>Medieval Kingdom</span>
-                    </div>
-                    <div class="map-marker future" data-location="Tech Hub">
-                        <i class="fas fa-robot"></i>
-                        <span>Future City</span>
-                    </div>
-                </div>
+        <div class="map-header">
+            <h2 class="section-title">Time Travel Map</h2>
+            <p class="map-description">Navigate through different eras and discover event locations</p>
+        </div>
+
+        <div class="map-controls">
+            <div class="era-filters">
+                <button class="era-btn active" data-era="all">
+                    <i class="fas fa-globe"></i>
+                    All Eras
+                </button>
+                <button class="era-btn" data-era="prehistoric">
+                    <i class="fas fa-dragon"></i>
+                    Prehistoric
+                </button>
+                <button class="era-btn" data-era="medieval">
+                    <i class="fas fa-castle"></i>
+                    Medieval
+                </button>
+                <button class="era-btn" data-era="future">
+                    <i class="fas fa-robot"></i>
+                    Future
+                </button>
             </div>
         </div>
-        <div class="map-controls">
-            <button class="era-filter active" data-era="all">All Eras</button>
-            <button class="era-filter" data-era="prehistoric">Prehistoric</button>
-            <button class="era-filter" data-era="medieval">Medieval</button>
-            <button class="era-filter" data-era="future">Future</button>
+
+        <div class="interactive-map" id="timeMap"></div>
+
+        <div class="location-info" id="locationInfo">
+            <div class="info-header">
+                <h3>Location Details</h3>
+                <button class="close-info"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="info-content"></div>
         </div>
     </div>
-</section> 
+</section>
+
+<style>
+.time-map-section {
+    padding: 4rem 2rem;
+    background: #1a1a1a;
+    min-height: 100vh;
+    color: white;
+}
+
+.map-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(0, 242, 255, 0.3);
+}
+
+.map-description {
+    color: #ccc;
+    font-size: 1.1rem;
+}
+
+.map-controls {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+}
+
+.era-filters {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.era-btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.era-btn:hover,
+.era-btn.active {
+    background: #4CAF50;
+    transform: translateY(-2px);
+}
+
+.era-btn i {
+    font-size: 1.2rem;
+}
+
+.interactive-map {
+    height: 600px;
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+    background: #2a2a2a;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.location-info {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 300px;
+    background: rgba(0, 0, 0, 0.9);
+    border-radius: 10px;
+    padding: 1rem;
+    display: none;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.info-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.close-info {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.info-content {
+    color: #ccc;
+}
+
+@media (max-width: 768px) {
+    .interactive-map {
+        height: 400px;
+    }
+
+    .location-info {
+        width: 90%;
+        left: 5%;
+        right: 5%;
+    }
+}
+</style>
+
+<script>
+class TimeMap {
+    constructor() {
+        this.map = null;
+        this.markers = [];
+        this.currentEra = 'all';
+        this.init();
+    }
+
+    init() {
+        this.map = L.map('timeMap').setView([51.505, -0.09], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(this.map);
+
+        this.addMarkers();
+        this.setupControls();
+    }
+
+    addMarkers() {
+        const locations = {
+            prehistoric: [
+                {
+                    lat: 51.51,
+                    lng: -0.1,
+                    name: 'Dinosaur Valley',
+                    description: 'Experience prehistoric wildlife in their natural habitat',
+                    icon: 'dragon'
+                }
+            ],
+            medieval: [
+                {
+                    lat: 51.52,
+                    lng: -0.08,
+                    name: 'Castle Grounds',
+                    description: 'Medieval fortress with live tournaments and feasts',
+                    icon: 'castle'
+                }
+            ],
+            future: [
+                {
+                    lat: 51.505,
+                    lng: -0.12,
+                    name: 'Tech Hub',
+                    description: 'Advanced technology showcase and interactive exhibits',
+                    icon: 'robot'
+                }
+            ]
+        };
+
+        // Create markers for each location
+        for (let era in locations) {
+            locations[era].forEach(loc => {
+                const marker = L.marker([loc.lat, loc.lng], {
+                    icon: L.divIcon({
+                        className: `map-marker ${era}`,
+                        html: `<i class="fas fa-${loc.icon}"></i>`
+                    })
+                });
+
+                marker.bindPopup(`
+                    <div class="marker-popup">
+                        <h3>${loc.name}</h3>
+                        <p>${loc.description}</p>
+                        <button onclick="timeMap.showLocationInfo('${loc.name}', '${era}')">
+                            View Details
+                        </button>
+                    </div>
+                `);
+
+                marker.addTo(this.map);
+                this.markers.push({ marker, era });
+            });
+        }
+    }
+
+    setupControls() {
+        document.querySelectorAll('.era-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                this.filterMarkers(btn.dataset.era);
+                document.querySelectorAll('.era-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
+    }
+
+    filterMarkers(era) {
+        this.currentEra = era;
+        this.markers.forEach(({ marker, era: markerEra }) => {
+            if (era === 'all' || markerEra === era) {
+                marker.addTo(this.map);
+            } else {
+                marker.remove();
+            }
+        });
+    }
+
+    showLocationInfo(name, era) {
+        const infoPanel = document.getElementById('locationInfo');
+        const content = infoPanel.querySelector('.info-content');
+        
+        content.innerHTML = `
+            <h4>${name}</h4>
+            <p>Era: ${era.charAt(0).toUpperCase() + era.slice(1)}</p>
+            <div class="location-details">
+                <!-- Add more location details here -->
+            </div>
+            <button class="book-btn">Book Event</button>
+        `;
+        
+        infoPanel.style.display = 'block';
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    window.timeMap = new TimeMap();
+});
+
+document.querySelector('.close-info').addEventListener('click', () => {
+    document.getElementById('locationInfo').style.display = 'none';
+});
+</script> 

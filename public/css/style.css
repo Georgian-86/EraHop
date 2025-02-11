@@ -717,4 +717,49 @@ body {
 
 .era-link:hover::before {
     transform: scaleY(1);
+}
+
+/* Map Marker Styles */
+.map-marker {
+    width: 40px !important;
+    height: 40px !important;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #fff;
+    transition: all 0.3s ease;
+}
+
+.map-marker i {
+    color: white;
+    font-size: 1.2rem;
+}
+
+.map-marker.prehistoric {
+    background: rgba(139, 69, 19, 0.9);
+}
+
+.map-marker.medieval {
+    background: rgba(74, 28, 28, 0.9);
+}
+
+.map-marker.future {
+    background: rgba(30, 63, 102, 0.9);
+}
+
+.marker-popup {
+    text-align: center;
+    padding: 0.5rem;
+}
+
+.marker-popup button {
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 } 

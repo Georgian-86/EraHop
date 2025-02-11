@@ -1,6 +1,6 @@
 class TimeWarpCountdown {
     constructor(targetDate, elementId, miniElementId) {
-        this.targetDate = new Date('2025-02-11T10:00:00');
+        this.targetDate = new Date('2025-02-15T12:00:00');
         this.countdownElement = document.getElementById(elementId);
         this.miniCountdownElement = document.getElementById(miniElementId);
         this.init();

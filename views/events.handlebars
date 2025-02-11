@@ -39,12 +39,10 @@
         </div>
     </section>
 
-    <!-- Medieval Era -->
     <section id="medieval" class="era-section medieval-era">
-        <!-- Similar structure as prehistoric -->
         <div class="era-header" data-aos="fade-right">
-            <h2>Prehistoric Era</h2>
-            <p>Journey back to the dawn of time</p>
+            <h2>Medieval Era</h2>
+            <p>Step into a world of knights and castles</p>
         </div>
         <div class="events-grid">
             {{#each events}}
@@ -55,8 +53,6 @@
                         </div>
                         <div class="event-details">
                             <h3>{{this.name}}</h3>
-
-
                             <p>{{this.description}}</p>
                             <p class="event-info">
                                 <span><i class="fas fa-clock"></i> {{this.time}}</span>
@@ -72,22 +68,19 @@
                 {{/if}}
             {{/each}}
         </div>
-        <!-- ... -->
     </section>
 
-    <!-- Future Era -->
     <section id="future" class="era-section future-era">
-        <!-- Similar structure as prehistoric -->
         <div class="era-header" data-aos="fade-right">
-            <h2>Prehistoric Era</h2>
-            <p>Journey back to the dawn of time</p>
+            <h2>Future Era</h2>
+            <p>Experience tomorrow's technology today</p>
         </div>
         <div class="events-grid">
             {{#each events}}
                 {{#if (eq this.era 'future')}}
                     <div class="event-card" data-aos="fade-up">
                         <div class="event-image">
-                            <img src="images\future" alt="{{this.name}}">
+                            <img src="images\future\download.jpg" alt="{{this.name}}">
                         </div>
                         <div class="event-details">
                             <h3>{{this.name}}</h3>
@@ -106,6 +99,5 @@
                 {{/if}}
             {{/each}}
         </div>
-        <!-- ... -->
     </section>
 </div> 

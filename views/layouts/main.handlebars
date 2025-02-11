@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/css/schedule.css">
     <link rel="stylesheet" href="/css/timezones.css">
     <link rel="stylesheet" href="/css/gallery.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 </head>
 <body class="theme-transition">
     {{> header}}
@@ -39,10 +40,11 @@
     <script src="/js/schedule.js"></script>
     <script src="/js/timezones.js"></script>
     <script src="/js/gallery.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script>
         // Initialize countdown
         document.addEventListener('DOMContentLoaded', function() {
-            const eventDate = new Date('2025-02-11T10:00:00');
+            const eventDate = new Date('2025-02-15T12:00:00');
             new TimeWarpCountdown(eventDate, 'countdown', 'countdown-mini');
         });
 

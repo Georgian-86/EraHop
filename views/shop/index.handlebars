@@ -1,62 +1,332 @@
 <section class="shop-section">
-    <h2 class="section-title">Time Travel Shop</h2>
-    
+    <div class="shop-header">
+        <h2 class="section-title">Time Travel Shop</h2>
+        <p class="shop-description">Get your passes and exclusive merchandise for TimeFest 2024</p>
+    </div>
+
     <!-- Event Passes Section -->
-    <div class="shop-category" id="tickets">
-        <h3>Event Passes</h3>
+    <div class="shop-category passes-section">
+        <div class="category-header">
+            <h3><i class="fas fa-ticket-alt"></i> Event Passes</h3>
+            <p>Choose your time travel adventure</p>
+        </div>
+
         <div class="product-grid">
-            <div class="product-card" data-id="all-access">
+            <!-- All Access Pass -->
+            <div class="product-card pass" data-aos="fade-up">
+                <div class="product-badge premium">Premium</div>
                 <div class="product-image">
                     <img src="/images/shop/all-access-pass.jpg" alt="All Access Pass">
                 </div>
                 <div class="product-details">
                     <h4>All Access Pass</h4>
-                    <p>Experience all three eras</p>
-                    <span class="price">$299</span>
-                    <button class="add-to-cart" onclick="addToCart('All Access Pass', 299, 'pass')">
-                        Add to Cart
-                    </button>
+                    <p>Experience all three eras with VIP access</p>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> Access to all time periods</li>
+                        <li><i class="fas fa-check"></i> Priority entry to events</li>
+                        <li><i class="fas fa-check"></i> Exclusive merchandise pack</li>
+                    </ul>
+                    <div class="price-container">
+                        <span class="price">$299</span>
+                        <button class="add-to-cart" onclick="addToCart('all-access-pass', 299, 'pass')">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
                 </div>
             </div>
 
-            <div class="product-card" data-id="prehistoric-pass">
+            <!-- Era-Specific Passes -->
+            <div class="product-card pass prehistoric" data-aos="fade-up" data-aos-delay="100">
                 <div class="product-image">
                     <img src="/images/shop/prehistoric-pass.jpg" alt="Prehistoric Pass">
                 </div>
                 <div class="product-details">
                     <h4>Prehistoric Pass</h4>
-                    <p>Access to all prehistoric events</p>
-                    <span class="price">$149</span>
-                    <button class="add-to-cart" onclick="addToCart('Prehistoric Pass', 149, 'pass')">
-                        Add to Cart
-                    </button>
+                    <p>Journey to the dawn of time</p>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> All prehistoric events</li>
+                        <li><i class="fas fa-check"></i> Dinosaur safari tour</li>
+                        <li><i class="fas fa-check"></i> Cave art workshop</li>
+                    </ul>
+                    <div class="price-container">
+                        <span class="price">$149</span>
+                        <button class="add-to-cart" onclick="addToCart('prehistoric-pass', 149, 'pass')">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
                 </div>
             </div>
-            <!-- Add more passes -->
+
+            <!-- Add Medieval and Future passes similarly -->
         </div>
     </div>
-    
+
     <!-- Merchandise Section -->
-    <div class="shop-category" id="merchandise">
-        <h3>Merchandise</h3>
+    <div class="shop-category merch-section">
+        <div class="category-header">
+            <h3><i class="fas fa-tshirt"></i> Official Merchandise</h3>
+            <p>Take home a piece of TimeFest</p>
+        </div>
+
         <div class="product-grid">
-            <div class="product-card" data-id="tshirt">
+            <!-- T-Shirt -->
+            <div class="product-card merch" data-aos="fade-up">
+                <div class="product-badge new">New</div>
                 <div class="product-image">
-                    <img src="/images/shop/time-shirt.jpg" alt="TimeFest T-Shirt">
+                    <img src="/images/shop/tshirt.jpg" alt="TimeFest T-Shirt">
+                    <div class="hover-gallery">
+                        <img src="/images/shop/tshirt-back.jpg" alt="T-Shirt Back">
+                    </div>
                 </div>
                 <div class="product-details">
-                    <h4>TimeFest T-Shirt</h4>
-                    <p>Official festival merchandise</p>
-                    <span class="price">$25</span>
-                    <button class="add-to-cart" onclick="addToCart('TimeFest T-Shirt', 25, 'merchandise')">
-                        Add to Cart
-                    </button>
+                    <h4>TimeFest 2024 T-Shirt</h4>
+                    <p>Limited edition event shirt</p>
+                    <div class="variant-selector">
+                        <label>Size:</label>
+                        <div class="size-options">
+                            <button class="size-btn" data-size="S">S</button>
+                            <button class="size-btn" data-size="M">M</button>
+                            <button class="size-btn" data-size="L">L</button>
+                            <button class="size-btn" data-size="XL">XL</button>
+                        </div>
+                    </div>
+                    <div class="price-container">
+                        <span class="price">$29.99</span>
+                        <button class="add-to-cart" onclick="addToCart('tshirt', 29.99, 'merch')">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
                 </div>
             </div>
-            <!-- Add more merchandise -->
+
+            <!-- Add more merchandise items -->
         </div>
     </div>
 </section>
+
+<style>
+.shop-section {
+    padding: 4rem 5%;
+    background: #f8f9fa;
+}
+
+.shop-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+.shop-description {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+.shop-category {
+    margin-bottom: 4rem;
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.category-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #2c3e50;
+}
+
+.category-header h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.product-card {
+    position: relative;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.product-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    z-index: 1;
+}
+
+.product-badge.premium {
+    background: #ffd700;
+    color: #000;
+}
+
+.product-badge.new {
+    background: #4CAF50;
+    color: white;
+}
+
+.product-image {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.hover-gallery {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.product-card:hover .hover-gallery {
+    opacity: 1;
+}
+
+.product-details {
+    padding: 1.5rem;
+}
+
+.features-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.features-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    color: #666;
+}
+
+.features-list i {
+    color: #4CAF50;
+}
+
+.variant-selector {
+    margin: 1rem 0;
+}
+
+.size-options {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.size-btn {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.size-btn:hover,
+.size-btn.active {
+    border-color: #4CAF50;
+    color: #4CAF50;
+}
+
+.price-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+}
+
+.price {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.add-to-cart {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    background: #4CAF50;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.add-to-cart:hover {
+    background: #45a049;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .shop-category {
+        padding: 1.5rem;
+    }
+}
+</style>
+
+<script>
+// Size selector functionality
+document.querySelectorAll('.size-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        btn.closest('.size-options').querySelectorAll('.size-btn').forEach(b => {
+            b.classList.remove('active');
+        });
+        btn.classList.add('active');
+    });
+});
+
+// Initialize AOS
+AOS.init({
+    duration: 800,
+    once: true
+});
+</script>
 
 <script>
 async function addToCart(title, price, type) {
