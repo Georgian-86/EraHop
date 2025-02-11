@@ -41,7 +41,17 @@ app.use((req, res, next) => {
     next();
 });
 
-// API Routes - Move these before the page routes
+// Add this before the registration route
+app.use((req, res, next) => {
+    console.log('Incoming request:', {
+        url: req.url,
+        method: req.method,
+        path: req.path
+    });
+    next();
+});
+
+// API Routes
 const authRoutes = require('./routes/auth');
 const eventRoutes = require('./routes/events');
 const bookingRoutes = require('./routes/bookings');
@@ -50,12 +60,10 @@ const cartRoutes = require('./routes/cart');
 const registrationRoutes = require('./routes/registrations');
 const scheduleRoutes = require('./routes/schedule');
 
-// Registration route should be first
+// Use routes
+app.use('/events', eventRoutes);  // This should handle /events/register
 app.use('/api/registration', registrationRoutes);
-
-// API Routes
 app.use('/api/auth', authRoutes);
-app.use('/api/events', eventRoutes);
 app.use('/api/bookings', bookingRoutes);
 app.use('/api/cart', cartRoutes);
 app.use('/interactive/gallery', galleryRoutes);
@@ -69,21 +77,19 @@ app.get('/', (req, res) => {
     });
 });
 
-app.get('/events/timezones', (req, res, next) => {
-    try {
-        console.log('Attempting to render timezones page');
-        const viewPath = path.join(__dirname, 'views/events/timezones.handlebars');
-        console.log('View path:', viewPath);
-        console.log('File exists:', fs.existsSync(viewPath));
+// Move all /events routes together in this order
+// Most specific routes first, then dynamic routes
 
-        res.render('events/timezones', {
-            title: 'Time Zones - TimeFest 2024',
-            layout: 'main',
-            isTimezonePage: true
+// 1. First, specific event routes
+app.get('/events/register', (req, res, next) => {
+    console.log('Attempting to render registration page');
+    try {
+        res.render('events/register', {
+            title: 'Register - TimeFest 2024',
+            layout: 'main'
         });
     } catch (error) {
-        console.error('Error rendering timezones:', error);
-        console.error('Stack:', error.stack);
+        console.error('Error rendering registration:', error);
         next(error);
     }
 });
@@ -101,6 +107,20 @@ app.get('/events/schedule', (req, res, next) => {
     }
 });
 
+app.get('/events/timezones', (req, res, next) => {
+    try {
+        res.render('events/timezones', {
+            title: 'Time Zones - TimeFest 2024',
+            layout: 'main',
+            isTimezonePage: true
+        });
+    } catch (error) {
+        console.error('Error rendering timezones:', error);
+        next(error);
+    }
+});
+
+// 2. Then the dynamic era route
 app.get('/events/:era', (req, res, next) => {
     const validEras = ['prehistoric', 'medieval', 'future'];
     const era = req.params.era;
@@ -120,6 +140,7 @@ app.get('/events/:era', (req, res, next) => {
     }
 });
 
+// 3. Finally, the base events route
 app.get('/events', (req, res) => {
     res.render('events/index', {
         title: 'Events - TimeFest 2024',
@@ -207,18 +228,6 @@ app.get('/admin/registrations', (req, res) => {
         title: 'Registration Management - TimeFest 2024',
         layout: 'main'
     });
-});
-
-app.get('/events/register', (req, res, next) => {
-    try {
-        res.render('events/register', {
-            title: 'Register - TimeFest 2024',
-            layout: 'main'
-        });
-    } catch (error) {
-        console.error('Error rendering registration:', error);
-        next(error);
-    }
 });
 
 // Test upload page route

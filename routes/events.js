@@ -104,4 +104,12 @@ router.post('/register/:id', (req, res) => {
     res.redirect('/events');
 });
 
+// Registration route
+router.get('/register', (req, res) => {
+    res.render('events/register', {
+        title: 'Register for TimeFest 2024',
+        layout: 'main'
+    });
+});
+
 module.exports = router; 

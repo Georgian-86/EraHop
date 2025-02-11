@@ -134,12 +134,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
-        
         const submitButton = form.querySelector('button[type="submit"]');
         submitButton.disabled = true;
         
         try {
-            // Gather form data
             const formData = {
                 name: form.name.value.trim(),
                 email: form.email.value.trim(),
@@ -149,9 +147,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 totalAmount: parseFloat(totalAmount.textContent)
             };
 
-            console.log('Sending registration data:', formData);
-
-            // Send registration request
             const response = await fetch('/api/registration', {
                 method: 'POST',
                 headers: {
@@ -161,18 +156,11 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             const data = await response.json();
-            console.log('Server response:', data);
-
+            
             if (data.success) {
-                // Show success message
                 alert('Registration successful! Check your email for confirmation.');
-                
-                // Reset form
                 form.reset();
                 updateTotal();
-                
-                // Redirect to confirmation page or show success message
-                // window.location.href = '/registration-success';
             } else {
                 throw new Error(data.message || 'Registration failed');
             }
