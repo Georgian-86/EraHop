@@ -1,256 +1,282 @@
 {{#if error}}
-    <div class="alert alert-danger">
-        Error loading schedule: {{error}}
-    </div>
+  <div class='alert alert-danger'>
+    Error loading schedule:
+    {{error}}
+  </div>
 {{else}}
-    <section class="schedule-section">
-        <div class="time-machine-interface">
-            <div class="interface-header">
-                <h2 class="interface-title">Time Travel Mission Control</h2>
-                <div class="time-controls">
-                    <div class="time-display">
-                        <span class="current-date">31 DEC 2024</span>
-                        <span class="current-time">00:00:00</span>
-                    </div>
-                    <div class="control-buttons">
-                        <button class="control-btn" data-day="prev">
-                            <i class="fas fa-chevron-left"></i> Previous Day
-                        </button>
-                        <button class="control-btn active" data-day="current">Today's Events</button>
-                        <button class="control-btn" data-day="next">
-                            Next Day <i class="fas fa-chevron-right"></i>
-                        </button>
-                    </div>
+  <section class='schedule-section'>
+    <div class='time-machine-interface'>
+      <div class='interface-header'>
+        <h2 class='interface-title'>Time Travel Mission Control</h2>
+        <div class='time-controls'>
+          <div class='time-display'>
+            <span class='current-date'>31 DEC 2025</span>
+            <span class='current-time'>00:00:00</span>
+          </div>
+          <div class='control-buttons'>
+            <button class='control-btn' data-day='prev'>
+              <i class='fas fa-chevron-left'></i>
+              Previous Day
+            </button>
+            <button class='control-btn active' data-day='current'>Today's Events</button>
+            <button class='control-btn' data-day='next'>
+              Next Day
+              <i class='fas fa-chevron-right'></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class='time-grid'>
+        <div class='time-line'></div>
+
+        <!-- Morning Events -->
+        <div class='time-block morning'>
+          <div class='time-label'>Morning</div>
+          <div class='event-container'>
+            <div class='event-card prehistoric' data-time='0900'>
+              <div class='event-time'>09:00</div>
+              <div class='event-details'>
+                <h3>Dinosaur Safari</h3>
+                <p>Prehistoric Zone</p>
+                <div class='event-meta'>
+                  <span><i class='fas fa-users'></i> 20 spots left</span>
+                  <span><i class='fas fa-clock'></i> 2 hours</span>
                 </div>
+                <div class='event-actions'>
+                  <button class='book-btn'>Book Now</button>
+                  <button class='info-btn'><i
+                      class='fas fa-info-circle'
+                    ></i></button>
+                </div>
+              </div>
+              <div class='event-status'>
+                <span class='status-badge available'>Available</span>
+              </div>
             </div>
 
-            <div class="time-grid">
-                <div class="time-line"></div>
-                
-                <!-- Morning Events -->
-                <div class="time-block morning">
-                    <div class="time-label">Morning</div>
-                    <div class="event-container">
-                        <div class="event-card prehistoric" data-time="0900">
-                            <div class="event-time">09:00</div>
-                            <div class="event-details">
-                                <h3>Dinosaur Safari</h3>
-                                <p>Prehistoric Zone</p>
-                                <div class="event-meta">
-                                    <span><i class="fas fa-users"></i> 20 spots left</span>
-                                    <span><i class="fas fa-clock"></i> 2 hours</span>
-                                </div>
-                                <div class="event-actions">
-                                    <button class="book-btn">Book Now</button>
-                                    <button class="info-btn"><i class="fas fa-info-circle"></i></button>
-                                </div>
-                            </div>
-                            <div class="event-status">
-                                <span class="status-badge available">Available</span>
-                            </div>
-                        </div>
-
-                        <div class="event-card medieval" data-time="1000">
-                            <div class="event-time">10:00</div>
-                            <div class="event-details">
-                                <h3>Medieval Archery</h3>
-                                <p>Castle Training Grounds</p>
-                                <div class="event-meta">
-                                    <span><i class="fas fa-bullseye"></i> Equipment Provided</span>
-                                    <span><i class="fas fa-clock"></i> 1.5 hours</span>
-                                </div>
-                                <div class="event-actions">
-                                    <button class="book-btn">Join Session</button>
-                                    <button class="info-btn"><i class="fas fa-info-circle"></i></button>
-                                </div>
-                            </div>
-                            <div class="event-status">
-                                <span class="status-badge">Few Spots Left</span>
-                            </div>
-                        </div>
-
-                        <div class="event-card future" data-time="1100">
-                            <div class="event-time">11:00</div>
-                            <div class="event-details">
-                                <h3>Quantum Lab Tour</h3>
-                                <p>Future Research Center</p>
-                                <div class="event-meta">
-                                    <span><i class="fas fa-atom"></i> Interactive Demo</span>
-                                    <span><i class="fas fa-clock"></i> 1 hour</span>
-                                </div>
-                                <div class="event-actions">
-                                    <button class="book-btn">Reserve Spot</button>
-                                    <button class="info-btn"><i class="fas fa-info-circle"></i></button>
-                                </div>
-                            </div>
-                            <div class="event-status">
-                                <span class="status-badge vip">VIP Access</span>
-                            </div>
-                        </div>
-                    </div>
+            <div class='event-card medieval' data-time='1000'>
+              <div class='event-time'>10:00</div>
+              <div class='event-details'>
+                <h3>Medieval Archery</h3>
+                <p>Castle Training Grounds</p>
+                <div class='event-meta'>
+                  <span><i class='fas fa-bullseye'></i>
+                    Equipment Provided</span>
+                  <span><i class='fas fa-clock'></i> 1.5 hours</span>
                 </div>
-
-                <!-- Afternoon Events -->
-                <div class="time-block afternoon">
-                    <div class="time-label">Afternoon</div>
-                    <div class="event-container">
-                        <div class="event-card prehistoric" data-time="1300">
-                            <div class="event-time">13:00</div>
-                            <div class="event-details">
-                                <h3>Fossil Excavation</h3>
-                                <p>Archaeological Site</p>
-                                <div class="event-meta">
-                                    <span><i class="fas fa-hammer"></i> Tools Provided</span>
-                                    <span><i class="fas fa-clock"></i> 2.5 hours</span>
-                                </div>
-                                <div class="event-actions">
-                                    <button class="book-btn">Join Dig</button>
-                                    <button class="info-btn"><i class="fas fa-info-circle"></i></button>
-                                </div>
-                            </div>
-                            <div class="event-status">
-                                <span class="status-badge limited">Limited Spots</span>
-                            </div>
-                        </div>
-
-                        <div class="event-card medieval" data-time="1400">
-                            <div class="event-time">14:00</div>
-                            <div class="event-details">
-                                <h3>Knights Tournament</h3>
-                                <p>Grand Arena</p>
-                                <div class="event-meta">
-                                    <span><i class="fas fa-ticket-alt"></i> VIP Available</span>
-                                    <span><i class="fas fa-clock"></i> 3 hours</span>
-                                </div>
-                                <div class="event-actions">
-                                    <button class="book-btn">Reserve Seat</button>
-                                    <button class="info-btn"><i class="fas fa-info-circle"></i></button>
-                                </div>
-                            </div>
-                            <div class="event-status">
-                                <span class="status-badge vip">VIP Available</span>
-                            </div>
-                        </div>
-
-                        <div class="event-card future" data-time="1500">
-                            <div class="event-time">15:00</div>
-                            <div class="event-details">
-                                <h3>Space Flight Simulator</h3>
-                                <p>Space Training Center</p>
-                                <div class="event-meta">
-                                    <span><i class="fas fa-space-shuttle"></i> Zero Gravity</span>
-                                    <span><i class="fas fa-clock"></i> 2 hours</span>
-                                </div>
-                                <div class="event-actions">
-                                    <button class="book-btn">Launch Experience</button>
-                                    <button class="info-btn"><i class="fas fa-info-circle"></i></button>
-                                </div>
-                            </div>
-                            <div class="event-status">
-                                <span class="status-badge">Available</span>
-                            </div>
-                        </div>
-                    </div>
+                <div class='event-actions'>
+                  <button class='book-btn'>Join Session</button>
+                  <button class='info-btn'><i
+                      class='fas fa-info-circle'
+                    ></i></button>
                 </div>
-
-                <!-- Evening Events -->
-                <div class="time-block evening">
-                    <div class="time-label">Evening</div>
-                    <div class="event-container">
-                        <div class="event-card prehistoric" data-time="1800">
-                            <div class="event-time">18:00</div>
-                            <div class="event-details">
-                                <h3>Prehistoric Night Hunt</h3>
-                                <p>Primeval Forest</p>
-                                <div class="event-meta">
-                                    <span><i class="fas fa-moon"></i> Night Vision Gear</span>
-                                    <span><i class="fas fa-clock"></i> 2 hours</span>
-                                </div>
-                                <div class="event-actions">
-                                    <button class="book-btn">Join Hunt</button>
-                                    <button class="info-btn"><i class="fas fa-info-circle"></i></button>
-                                </div>
-                            </div>
-                            <div class="event-status">
-                                <span class="status-badge limited">Limited Spots</span>
-                            </div>
-                        </div>
-
-                        <div class="event-card medieval" data-time="1900">
-                            <div class="event-time">19:00</div>
-                            <div class="event-details">
-                                <h3>Royal Feast</h3>
-                                <p>Great Hall</p>
-                                <div class="event-meta">
-                                    <span><i class="fas fa-utensils"></i> Authentic Cuisine</span>
-                                    <span><i class="fas fa-clock"></i> 3 hours</span>
-                                </div>
-                                <div class="event-actions">
-                                    <button class="book-btn">Reserve Feast</button>
-                                    <button class="info-btn"><i class="fas fa-info-circle"></i></button>
-                                </div>
-                            </div>
-                            <div class="event-status">
-                                <span class="status-badge">Available</span>
-                            </div>
-                        </div>
-
-                        <div class="event-card future" data-time="2000">
-                            <div class="event-time">20:00</div>
-                            <div class="event-details">
-                                <h3>Holographic Concert</h3>
-                                <p>Neo-Arena</p>
-                                <div class="event-meta">
-                                    <span><i class="fas fa-music"></i> AI Orchestra</span>
-                                    <span><i class="fas fa-clock"></i> 2.5 hours</span>
-                                </div>
-                                <div class="event-actions">
-                                    <button class="book-btn">Get Tickets</button>
-                                    <button class="info-btn"><i class="fas fa-info-circle"></i></button>
-                                </div>
-                            </div>
-                            <div class="event-status">
-                                <span class="status-badge vip">Premium Seats</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              </div>
+              <div class='event-status'>
+                <span class='status-badge'>Few Spots Left</span>
+              </div>
             </div>
 
-            <div class="schedule-controls">
-                <div class="view-options">
-                    <button class="view-btn active" data-view="grid">
-                        <i class="fas fa-th"></i> Grid View
-                    </button>
-                    <button class="view-btn" data-view="list">
-                        <i class="fas fa-list"></i> List View
-                    </button>
-                    <button class="view-btn" data-view="timeline">
-                        <i class="fas fa-stream"></i> Timeline
-                    </button>
+            <div class='event-card future' data-time='1100'>
+              <div class='event-time'>11:00</div>
+              <div class='event-details'>
+                <h3>Quantum Lab Tour</h3>
+                <p>Future Research Center</p>
+                <div class='event-meta'>
+                  <span><i class='fas fa-atom'></i> Interactive Demo</span>
+                  <span><i class='fas fa-clock'></i> 1 hour</span>
                 </div>
-                <div class="filter-options">
-                    <select class="era-filter">
-                        <option value="all">All Eras</option>
-                        <option value="prehistoric">Prehistoric</option>
-                        <option value="medieval">Medieval</option>
-                        <option value="future">Future</option>
-                    </select>
-                    <button class="download-btn">
-                        <i class="fas fa-calendar-alt"></i> Add to Calendar
-                    </button>
+                <div class='event-actions'>
+                  <button class='book-btn'>Reserve Spot</button>
+                  <button class='info-btn'><i
+                      class='fas fa-info-circle'
+                    ></i></button>
                 </div>
+              </div>
+              <div class='event-status'>
+                <span class='status-badge vip'>VIP Access</span>
+              </div>
             </div>
+          </div>
         </div>
 
-        <!-- Event Details Modal -->
-        <div class="event-modal" id="eventModal">
-            <div class="modal-content">
-                <button class="close-modal">&times;</button>
-                <div class="modal-body">
-                    <!-- Event details will be loaded here -->
+        <!-- Afternoon Events -->
+        <div class='time-block afternoon'>
+          <div class='time-label'>Afternoon</div>
+          <div class='event-container'>
+            <div class='event-card prehistoric' data-time='1300'>
+              <div class='event-time'>13:00</div>
+              <div class='event-details'>
+                <h3>Fossil Excavation</h3>
+                <p>Archaeological Site</p>
+                <div class='event-meta'>
+                  <span><i class='fas fa-hammer'></i> Tools Provided</span>
+                  <span><i class='fas fa-clock'></i> 2.5 hours</span>
                 </div>
+                <div class='event-actions'>
+                  <button class='book-btn'>Join Dig</button>
+                  <button class='info-btn'><i
+                      class='fas fa-info-circle'
+                    ></i></button>
+                </div>
+              </div>
+              <div class='event-status'>
+                <span class='status-badge limited'>Limited Spots</span>
+              </div>
             </div>
+
+            <div class='event-card medieval' data-time='1400'>
+              <div class='event-time'>14:00</div>
+              <div class='event-details'>
+                <h3>Knights Tournament</h3>
+                <p>Grand Arena</p>
+                <div class='event-meta'>
+                  <span><i class='fas fa-ticket-alt'></i> VIP Available</span>
+                  <span><i class='fas fa-clock'></i> 3 hours</span>
+                </div>
+                <div class='event-actions'>
+                  <button class='book-btn'>Reserve Seat</button>
+                  <button class='info-btn'><i
+                      class='fas fa-info-circle'
+                    ></i></button>
+                </div>
+              </div>
+              <div class='event-status'>
+                <span class='status-badge vip'>VIP Available</span>
+              </div>
+            </div>
+
+            <div class='event-card future' data-time='1500'>
+              <div class='event-time'>15:00</div>
+              <div class='event-details'>
+                <h3>Space Flight Simulator</h3>
+                <p>Space Training Center</p>
+                <div class='event-meta'>
+                  <span><i class='fas fa-space-shuttle'></i> Zero Gravity</span>
+                  <span><i class='fas fa-clock'></i> 2 hours</span>
+                </div>
+                <div class='event-actions'>
+                  <button class='book-btn'>Launch Experience</button>
+                  <button class='info-btn'><i
+                      class='fas fa-info-circle'
+                    ></i></button>
+                </div>
+              </div>
+              <div class='event-status'>
+                <span class='status-badge'>Available</span>
+              </div>
+            </div>
+          </div>
         </div>
-    </section>
-{{/if}} 
+
+        <!-- Evening Events -->
+        <div class='time-block evening'>
+          <div class='time-label'>Evening</div>
+          <div class='event-container'>
+            <div class='event-card prehistoric' data-time='1800'>
+              <div class='event-time'>18:00</div>
+              <div class='event-details'>
+                <h3>Prehistoric Night Hunt</h3>
+                <p>Primeval Forest</p>
+                <div class='event-meta'>
+                  <span><i class='fas fa-moon'></i> Night Vision Gear</span>
+                  <span><i class='fas fa-clock'></i> 2 hours</span>
+                </div>
+                <div class='event-actions'>
+                  <button class='book-btn'>Join Hunt</button>
+                  <button class='info-btn'><i
+                      class='fas fa-info-circle'
+                    ></i></button>
+                </div>
+              </div>
+              <div class='event-status'>
+                <span class='status-badge limited'>Limited Spots</span>
+              </div>
+            </div>
+
+            <div class='event-card medieval' data-time='1900'>
+              <div class='event-time'>19:00</div>
+              <div class='event-details'>
+                <h3>Royal Feast</h3>
+                <p>Great Hall</p>
+                <div class='event-meta'>
+                  <span><i class='fas fa-utensils'></i> Authentic Cuisine</span>
+                  <span><i class='fas fa-clock'></i> 3 hours</span>
+                </div>
+                <div class='event-actions'>
+                  <button class='book-btn'>Reserve Feast</button>
+                  <button class='info-btn'><i
+                      class='fas fa-info-circle'
+                    ></i></button>
+                </div>
+              </div>
+              <div class='event-status'>
+                <span class='status-badge'>Available</span>
+              </div>
+            </div>
+
+            <div class='event-card future' data-time='2000'>
+              <div class='event-time'>20:00</div>
+              <div class='event-details'>
+                <h3>Holographic Concert</h3>
+                <p>Neo-Arena</p>
+                <div class='event-meta'>
+                  <span><i class='fas fa-music'></i> AI Orchestra</span>
+                  <span><i class='fas fa-clock'></i> 2.5 hours</span>
+                </div>
+                <div class='event-actions'>
+                  <button class='book-btn'>Get Tickets</button>
+                  <button class='info-btn'><i
+                      class='fas fa-info-circle'
+                    ></i></button>
+                </div>
+              </div>
+              <div class='event-status'>
+                <span class='status-badge vip'>Premium Seats</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class='schedule-controls'>
+        <div class='view-options'>
+          <button class='view-btn active' data-view='grid'>
+            <i class='fas fa-th'></i>
+            Grid View
+          </button>
+          <button class='view-btn' data-view='list'>
+            <i class='fas fa-list'></i>
+            List View
+          </button>
+          <button class='view-btn' data-view='timeline'>
+            <i class='fas fa-stream'></i>
+            Timeline
+          </button>
+        </div>
+        <div class='filter-options'>
+          <select class='era-filter'>
+            <option value='all'>All Eras</option>
+            <option value='prehistoric'>Prehistoric</option>
+            <option value='medieval'>Medieval</option>
+            <option value='future'>Future</option>
+          </select>
+          <button class='download-btn'>
+            <i class='fas fa-calendar-alt'></i>
+            Add to Calendar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Event Details Modal -->
+    <div class='event-modal' id='eventModal'>
+      <div class='modal-content'>
+        <button class='close-modal'>&times;</button>
+        <div class='modal-body'>
+          <!-- Event details will be loaded here -->
+        </div>
+      </div>
+    </div>
+  </section>
+{{/if}}
